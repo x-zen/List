@@ -42,14 +42,14 @@ login = e => {
                type='text'
                name='username'
                value={this.state.credentials.username}
-               onChange={this.handleLogin}
+               onChange={this.handleChange}
              />
              <h3>Password</h3>
              <input
                type='password'
                name='password'
                value={this.state.credentials.password}
-               onChange={this.handleLogin}
+               onChange={this.handleChange}
              />
              <button>Log in!</button>
            </form>
