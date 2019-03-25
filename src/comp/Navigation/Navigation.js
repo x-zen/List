@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import './Navigation.css'
 
@@ -18,9 +19,9 @@ class Navigation extends React.Component {
         </div>
 
         <div className='nav-links'>
-          <p className='nav-item'>Home</p>
-          <p className='nav-item'>My List</p>
-          <p className='nav-item'>Sign In</p>
+          <Link to='/' className='nav-item'>Home</Link>
+          <Link to='/list' className='nav-item'>My List</Link>
+          <Link to='/login' className='nav-item'>Sign In</Link>
         </div>
       </div>
     );

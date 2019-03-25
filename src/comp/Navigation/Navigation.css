@@ -2,11 +2,13 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding: 1rem;
+  padding: 0.5rem;
+  background-color: black;
 }
 
 .nav-logo {
-
+  color: white;
+  font-size: 2.0rem;
 }
 
 .nav-links {
@@ -15,5 +17,14 @@
 }
 
 .nav-item {
-  margin: 0 0.3rem;
+  color: white;
+  padding: 0.3rem;
+  text-decoration: none;
+  font-size: 1.6rem;
+}
+
+.nav-item:hover {
+  color: black;
+  background-color: white;
+  transition: 1s;
 }
