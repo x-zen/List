@@ -26,7 +26,7 @@ login = e => {
   e.preventDefault();
   this.props.login(this.state.credentials)
     .then(() => {
-      this.props.history.push('/list')
+      this.props.history.push('/list/:userId')
     })
 }
 

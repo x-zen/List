@@ -16,7 +16,7 @@ class App extends Component {
         <Navigation />
 
         <Route exact path='/' component={Home} />
-        <PrivateRoute path='/list' component={ListNav} />
+        <PrivateRoute exact path='/lists' component={ListNav} />
         <Route path='/login' component={Login} />
         <Route path='/signup' component={SignUp} />
       </div>
