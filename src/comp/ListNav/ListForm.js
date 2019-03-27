@@ -10,7 +10,6 @@ class ListForm extends React.Component {
     super(props);
     this.state = {
       newList: {
-          id: null,
           title: "",
           description: "",
           dueDate: ""
@@ -20,20 +19,23 @@ class ListForm extends React.Component {
   }
 
   handleChanges = e => {
-    this.setState({ [e.target.name]: e.target.value });
+    this.setState({
+      newList: {
+      ...this.state.newList,
+      [e.target.name]: e.target.value
+      }
+    });
   };
 
   addList = e => {
   e.preventDefault();
   this.props.addList(this.state.newList);
-  this.setState({ newList: [
-    {
-      id: null,
+  this.setState({
+    newList: {
       title: "",
       Description: "",
       dueDate: ""
     }
-  ]
   });
 };
 
@@ -53,7 +55,7 @@ class ListForm extends React.Component {
             <input
               name="title"
               type="text"
-              value={this.state.title}
+              value={this.state.newList.itle}
               onChange={this.handleChanges}
               placeholder='Title'
             />
@@ -61,7 +63,7 @@ class ListForm extends React.Component {
             <input
               name="description"
               type="text"
-              value={this.state.description}
+              value={this.state.newList.description}
               onChange={this.handleChanges}
               placeholder='List Description'
             />
@@ -69,7 +71,7 @@ class ListForm extends React.Component {
             <input
               name="dueDate"
               type="text"
-              value={this.state.dueDate}
+              value={this.state.newList.dueDate}
               onChange={this.handleChanges}
               placeholder='MM/DD/YYYY'
             />
@@ -84,7 +86,7 @@ class ListForm extends React.Component {
 const mapStateToProps = state => {
   console.log(state);
   return {
-    lists: state.lists,
+    newList: state.newList,
     isAddingList: state.isAddingList
   };
 };
