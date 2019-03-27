@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import { readLists } from '../../actions';
 
+import ListForm from './ListForm.js'
 import List from './List.js';
 
 class ListNav extends React.Component {
@@ -28,17 +29,20 @@ class ListNav extends React.Component {
     }
     return (
       <div>
-        {this.props.lists.map(list => {
-          return (
-            <List
-              id={list.id}
-              title={list.title}
-              description={list.description}
-              key={list.id}
-              list={list}
-            />
-          );
-        })}
+        <ListForm />
+        <div>
+          {this.props.lists.map(list => {
+            return (
+              <List
+                id={list.id}
+                title={list.title}
+                description={list.description}
+                key={list.id}
+                list={list}
+              />
+            );
+          })}
+        </div>
       </div>
     );
   }
