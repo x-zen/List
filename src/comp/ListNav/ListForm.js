@@ -1,4 +1,7 @@
 import React from "react";
+import { connect } from 'react-redux';
+
+import { addList } from '../../actions'
 
 class ListForm extends React.Component {
   constructor(props) {
@@ -7,7 +10,8 @@ class ListForm extends React.Component {
       id: null,
       title: "",
       description: "",
-      dueDate: ""
+      dueDate: "",
+      isAddingList: false
     };
   }
 
@@ -15,16 +19,15 @@ class ListForm extends React.Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  handleSubmit = e => {
+  addList = e => {
     e.preventDefault();
-    // if (this.state.id) {
-    const item = {
+    const list = {
       id: this.state.id,
       title: this.state.name,
       description: this.state.age,
       dueDate: this.state.height
     };
-    this.props.submit(item);
+    this.props.submit(list);
     this.setState({
       id: null,
       name: "",
@@ -36,7 +39,7 @@ class ListForm extends React.Component {
   render() {
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.props.addList}>
           <input
             name="title"
             type="text"
@@ -46,7 +49,7 @@ class ListForm extends React.Component {
           <input
             name="description"
             type="text"
-            value={this.state.age}
+            value={this.state.description}
             onChange={this.handleChanges}
           />
           <input
@@ -62,4 +65,15 @@ class ListForm extends React.Component {
   }
 }
 
-export default ListForm;
+const mapStateToPops = state => {
+  console.log(state);
+  return {
+    lists: state.lists,
+    isAddingLists: state.isAddingList
+  };
+};
+
+export default connect(
+  mapStateToPops,
+  { addList }
+)(ListForm);

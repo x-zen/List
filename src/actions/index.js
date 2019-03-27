@@ -47,3 +47,18 @@ export const readLists = lists => dispatch => {
       dispatch({ type: GET_LIST_FAIL, payload: err })
     });
 };
+
+export const ADD_LIST_START = 'ADD_LIST_START';
+export const ADD_LIST_SUCCESS = 'ADD_LIST_SUCCESS';
+export const ADD_LIST_FAIL = 'ADD_LIST_FAIL';
+
+export const addList = lists => dispatch => {
+  dispatch({ type: ADD_LIST_START });
+  return axios.post('https://buildweek-wunderlist.herokuapp.com/api/lists', lists)
+    .then(res => {
+      dispatch({ type: ADD_LIST_SUCCESS, payload: res.data.payload });
+    })
+    .catch(err => {
+      dispatch({ type: ADD_LIST_FAIL, payload: err })
+    });
+};

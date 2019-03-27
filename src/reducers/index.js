@@ -7,7 +7,10 @@ import {
   SIGNUP_FAIL,
   GET_LIST_START,
   GET_LIST_SUCCESS,
-  GET_LIST_FAIL
+  GET_LIST_FAIL,
+  ADD_LIST_START,
+  ADD_LIST_SUCCESS,
+  ADD_LIST_FAIL
 } from '../actions'
 
 const initialState = {
@@ -23,6 +26,7 @@ const initialState = {
   isSigningUp: false,
   isGettingLists: false,
   isAddingList: false,
+  token: '',
   error: null
 }
 
@@ -37,7 +41,7 @@ function reducer(state = initialState, action) {
       return {
         ...state,
         isLoggingIn: false,
-
+        token: action.payload
       }
     case LOGIN_FAIL:
       return {
@@ -76,6 +80,22 @@ function reducer(state = initialState, action) {
       return{
         ...state,
         isGettingLists: false,
+        error: action.payload
+      }
+    case ADD_LIST_START:
+      return {
+        ...state,
+        isAddingLists: true
+      }
+    case ADD_LIST_SUCCESS:
+      return {
+        ...state,
+        isAddingLists: false,
+      }
+    case ADD_LIST_FAIL:
+      return{
+        ...state,
+        isAddingLists: false,
         error: action.payload
       }
     default:
