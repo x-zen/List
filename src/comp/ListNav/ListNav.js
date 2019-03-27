@@ -30,7 +30,7 @@ class ListNav extends React.Component {
       );
     }
     return (
-      <div>
+      <div className='list-nav'>
         <div>
           {this.props.lists.map(list => {
             return (

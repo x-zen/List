@@ -9,13 +9,12 @@ class ListForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      newList: [
-        {
+      newList: {
           id: null,
-          name: "",
-          age: "",
-          height: ""
-        }],
+          title: "",
+          description: "",
+          dueDate: ""
+        },
       isAddingList: false
     };
   }
@@ -30,9 +29,9 @@ class ListForm extends React.Component {
   this.setState({ newList: [
     {
       id: null,
-      name: "",
-      age: "",
-      height: ""
+      title: "",
+      Description: "",
+      dueDate: ""
     }
   ]
   });
@@ -74,7 +73,7 @@ class ListForm extends React.Component {
               onChange={this.handleChanges}
               placeholder='MM/DD/YYYY'
             />
-            <button className="btn">Add Item</button>
+            <button className="btn">Add List</button>
           </form>
         </div>
       </div>
