@@ -26,6 +26,7 @@ const initialState = {
   isSigningUp: false,
   isGettingLists: false,
   isAddingList: false,
+  isUpdatingList: false,
   token: '',
   error: null
 }

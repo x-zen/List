@@ -7,9 +7,8 @@ export const LOGIN_FAIL = 'LOGIN_FAIL';
 
 export const login = creds => dispatch => {
   dispatch({ type:LOGIN_START })
-  return axios.post('https://buildweek-wunderlist.herokuapp.com/api/login', creds)
+  return axios.post('https://buildweek-wunderlist.herokuapp.com/api/login', creds, {headers: { authorization: localStorage.getItem('token')}})
     .then(res => {
-      console.log(res)
       localStorage.setItem('token', res.data.token)
       dispatch({ type: LOGIN_SUCCESS, payload:res.data.payload })
     })
@@ -40,9 +39,11 @@ export const GET_LIST_FAIL = 'GET_LIST_FAIL';
 
 export const readLists = lists => dispatch => {
   dispatch({ type: GET_LIST_START });
-  return axios.post('https://buildweek-wunderlist.herokuapp.com/api/lists', lists)
+  return axios.post('https://buildweek-wunderlist.herokuapp.com/api/lists', lists, {headers: { authorization: localStorage.getItem('token')}})
     .then(res => {
-      dispatch({ type: GET_LIST_SUCCESS, payload: res.data.payload });
+      console.log(res)
+      localStorage.setItem('', res.data.payload)
+      dispatch({ type: GET_LIST_SUCCESS, payload: res.data });
     })
     .catch(err => {
       dispatch({ type: GET_LIST_FAIL, payload: err })

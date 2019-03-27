@@ -18,7 +18,7 @@ class ListNav extends React.Component {
   }
 
   componentDidMount() {
-    this.props.readLists();
+    this.props.readLists(this.state.lists);
   }
 
   render() {

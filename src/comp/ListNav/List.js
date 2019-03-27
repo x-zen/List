@@ -1,22 +1,43 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-const List = props => {
-  return (
-    <div className="list">
-      <div className='list-head'>
-        <h2>{props.title}</h2>
-      </div>
-      <hr className='hr' />
-      <div className='list-items'>
-        <p>{props.description}</p>
-        <h4>{props.dueDate}</h4>
-      </div>
+class List extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isUpdatingList: false
+    };
+  }
 
-      <div className='list-form'>
+  render() {
+    return (
+      <div className="list">
+        <div className='list-head'>
+          <h2>{this.props.title}</h2>
+        </div>
+        <hr className='hr' />
+        <div className='list-items'>
+          <p>{this.props.description}</p>
+          <p>Due: <span>{this.props.dueDate}</span></p>
+        </div>
 
+        <div className='list-actions'>
+          <i className="fas fa-eraser"></i>
+          <i className="fas fa-edit"></i>
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
+}
+
+const mapStateToPops = state => {
+  console.log(state);
+  return {
+    isUpdatingLists: state.isUpdatingLists
+  };
 };
 
-export default List;
+export default connect(
+  mapStateToPops,
+  {}
+)(List);

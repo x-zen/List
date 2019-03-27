@@ -33,7 +33,7 @@ class ListForm extends React.Component {
   this.setState({
     newList: {
       title: "",
-      Description: "",
+      description: "",
       dueDate: ""
     }
   });
