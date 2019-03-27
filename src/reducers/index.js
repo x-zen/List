@@ -11,7 +11,14 @@ import {
 } from '../actions'
 
 const initialState = {
-  lists: [],
+  lists: [
+    {
+      id: 999,
+      title: 'New list',
+      description: 'My new list!',
+      dueDate: '01/01/2020'
+    }
+  ],
   isLoggingIn: false,
   isSigningUp: false,
   isGettingLists: false,

@@ -6,22 +6,38 @@ import { readLists } from '../../actions';
 import List from './List.js';
 
 class ListNav extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      lists: [],
+      isGettingLists: false
+    };
+  }
+
   componentDidMount() {
     this.props.readLists();
   }
 
   render() {
-    if (this.props.isGettingLists) {
+    if (this.props.isGettingLists === true) {
       return (
         <div>
-          <h1>Looking for Lists...</h1>
+          <h2>Looking for Lists...</h2>
         </div>
       );
     }
     return (
       <div>
         {this.props.lists.map(list => {
-          return <List key={list.id} list={list} />;
+          return (
+            <List
+              id={list.id}
+              title={list.title}
+              description={list.description}
+              key={list.id}
+              list={list}
+            />
+          );
         })}
       </div>
     );
