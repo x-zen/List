@@ -6,6 +6,8 @@ import { readLists } from '../../actions';
 import ListForm from './ListForm.js'
 import List from './List.js';
 
+import './list.css'
+
 class ListNav extends React.Component {
   constructor(props) {
     super(props);
@@ -29,7 +31,6 @@ class ListNav extends React.Component {
     }
     return (
       <div>
-        <ListForm />
         <div>
           {this.props.lists.map(list => {
             return (
@@ -42,6 +43,10 @@ class ListNav extends React.Component {
               />
             );
           })}
+        </div>
+
+        <div>
+          <ListForm />
         </div>
       </div>
     );

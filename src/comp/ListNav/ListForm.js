@@ -3,14 +3,19 @@ import { connect } from 'react-redux';
 
 import { addList } from '../../actions'
 
+import './list.css'
+
 class ListForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: null,
-      title: "",
-      description: "",
-      dueDate: "",
+      newList: [
+        {
+          id: null,
+          name: "",
+          age: "",
+          height: ""
+        }],
       isAddingList: false
     };
   }
@@ -20,60 +25,72 @@ class ListForm extends React.Component {
   };
 
   addList = e => {
-    e.preventDefault();
-    const list = {
-      id: this.state.id,
-      title: this.state.name,
-      description: this.state.age,
-      dueDate: this.state.height
-    };
-    this.props.submit(list);
-    this.setState({
+  e.preventDefault();
+  this.props.addList(this.state.newList);
+  this.setState({ newList: [
+    {
       id: null,
       name: "",
       age: "",
       height: ""
-    });
-  };
+    }
+  ]
+  });
+};
+
 
   render() {
-    return (
-      <div>
-        <form onSubmit={this.props.addList}>
-          <input
-            name="title"
-            type="text"
-            value={this.state.title}
-            onChange={this.handleChanges}
-          />
-          <input
-            name="description"
-            type="text"
-            value={this.state.description}
-            onChange={this.handleChanges}
-          />
-          <input
-            name="dueDate"
-            type="text"
-            value={this.state.dueDate}
-            onChange={this.handleChanges}
-          />
-          <button className="btn">Add Item</button>
-        </form>
+    return(
+      <div className='list'>
+        <div className='list-head'>
+          <h2>Create a new list</h2>
+        </div>
+
+        <hr className='hr' />
+
+        <div>
+          <form onSubmit={this.addList}>
+            <h3>Title</h3>
+            <input
+              name="title"
+              type="text"
+              value={this.state.title}
+              onChange={this.handleChanges}
+              placeholder='Title'
+            />
+            <h3>List Description</h3>
+            <input
+              name="description"
+              type="text"
+              value={this.state.description}
+              onChange={this.handleChanges}
+              placeholder='List Description'
+            />
+            <h3>Due Date</h3>
+            <input
+              name="dueDate"
+              type="text"
+              value={this.state.dueDate}
+              onChange={this.handleChanges}
+              placeholder='MM/DD/YYYY'
+            />
+            <button className="btn">Add Item</button>
+          </form>
+        </div>
       </div>
-    );
+    )
   }
 }
 
-const mapStateToPops = state => {
+const mapStateToProps = state => {
   console.log(state);
   return {
     lists: state.lists,
-    isAddingLists: state.isAddingList
+    isAddingList: state.isAddingList
   };
 };
 
 export default connect(
-  mapStateToPops,
+  mapStateToProps,
   { addList }
 )(ListForm);
