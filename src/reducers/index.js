@@ -30,6 +30,7 @@ const initialState = {
   isGettingLists: false,
   isAddingList: false,
   isUpdatingList: false,
+  isRemovingList: false,
   token: '',
   error: null
 }
@@ -113,19 +114,19 @@ function reducer(state = initialState, action) {
       case DELETE_LIST_START:
         return {
           ...state,
-          isAddingLists: true,
+          isRemovingList: true,
           error: ''
         }
       case DELETE_LIST_SUCCESS:
         return {
           ...state,
-          isAddingLists: false,
+          isRemovingList: false,
           error: ''
         }
       case DELETE_LIST_FAIL:
         return{
           ...state,
-          isAddingLists: false,
+          isRemovingList: false,
           error: action.payload
         }
     default:

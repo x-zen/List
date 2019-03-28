@@ -1,15 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import { deleteList } from '../../actions';
+
 class List extends React.Component {
   constructor(props) {
     super(props);
+    this.deleteList.bind(this);
     this.state = {
-      isUpdatingList: false
+      isUpdatingList: false,
+      isRemovingList: false
     };
   }
 
-  deleteList = e => {
+  deleteList = (e, list) => {
     e.preventDefault();
     this.props.deleteList(this.state.id)
   }
@@ -27,8 +31,13 @@ class List extends React.Component {
         </div>
 
         <div className='list-actions'>
-          <i onClick={this.deleteList} className="fas fa-eraser"></i>
-          <i className="fas fa-edit"></i>
+          <i
+            onClick={this.deleteList}
+            className="fas fa-eraser"
+          ></i>
+          <i
+            className="fas fa-edit"
+          ></i>
         </div>
       </div>
     );
@@ -44,5 +53,5 @@ const mapStateToPops = state => {
 
 export default connect(
   mapStateToPops,
-  {}
+  {deleteList}
 )(List);
