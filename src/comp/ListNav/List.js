@@ -15,7 +15,7 @@ class List extends React.Component {
 
   deleteList = (e, list) => {
     e.preventDefault();
-    this.props.deleteList(this.state.id)
+    this.props.deleteList(this.props.id)
   }
 
   render() {

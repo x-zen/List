@@ -67,9 +67,9 @@ export const DELETE_LIST_START = 'DELETE_LIST_START';
 export const DELETE_LIST_SUCCESS = 'DELETE_LIST_SUCCESS';
 export const DELETE_LIST_FAIL = 'DELETE_LIST_FAIL';
 
-export const deleteList = list => dispatch => {
+export const deleteList = (listId) => dispatch => {
   dispatch({ type: DELETE_LIST_START });
-  return axios.delete('https://buildweek-wunderlist.herokuapp.com/api/lists/123', {headers: { authorization: localStorage.getItem('token')}})
+  return axios.delete(`https://buildweek-wunderlist.herokuapp.com/api/lists/${listId}`, {headers: { authorization: localStorage.getItem('token')}})
     .then(res => {
       dispatch({ type: DELETE_LIST_SUCCESS, payload: res.data.payload });
     })
