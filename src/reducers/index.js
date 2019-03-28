@@ -83,7 +83,7 @@ function reducer(state = initialState, action) {
       return {
         ...state,
         isGettingLists: false,
-        lists: action.payload
+        lists: action.payload,
         error: ''
       }
     case GET_LIST_FAIL:
