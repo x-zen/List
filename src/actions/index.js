@@ -37,13 +37,12 @@ export const GET_LIST_START = 'GET_LIST_START';
 export const GET_LIST_SUCCESS = 'GET_LIST_SUCCESS';
 export const GET_LIST_FAIL = 'GET_LIST_FAIL';
 
-export const readLists = lists => dispatch => {
+export const readLists = () => dispatch => {
   dispatch({ type: GET_LIST_START });
-  return axios.post('https://buildweek-wunderlist.herokuapp.com/api/lists', lists, {headers: { authorization: localStorage.getItem('token')}})
+  return axios.get('https://buildweek-wunderlist.herokuapp.com/api/lists', {headers: { authorization: localStorage.getItem('token')}})
     .then(res => {
       console.log(res)
-      localStorage.setItem('', res.data.payload)
-      dispatch({ type: GET_LIST_SUCCESS, payload: res.data });
+      dispatch({ type: GET_LIST_SUCCESS, payload: res.action.payload });
     })
     .catch(err => {
       dispatch({ type: GET_LIST_FAIL, payload: err })

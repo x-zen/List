@@ -10,7 +10,10 @@ import {
   GET_LIST_FAIL,
   ADD_LIST_START,
   ADD_LIST_SUCCESS,
-  ADD_LIST_FAIL
+  ADD_LIST_FAIL,
+  DELETE_LIST_START,
+  DELETE_LIST_SUCCESS,
+  DELETE_LIST_FAIL
 } from '../actions'
 
 const initialState = {
@@ -36,13 +39,15 @@ function reducer(state = initialState, action) {
     case LOGIN_START:
       return {
         ...state,
-        isLoggingIn: true
+        isLoggingIn: true,
+        error: ''
       }
     case LOGIN_SUCCESS:
       return {
         ...state,
         isLoggingIn: false,
-        token: action.payload
+        token: action.payload,
+        error: ''
       }
     case LOGIN_FAIL:
       return {
@@ -53,12 +58,14 @@ function reducer(state = initialState, action) {
     case SIGNUP_START:
       return {
         ...state,
-        isSigningUp: true
+        isSigningUp: true,
+        error: ''
       }
     case SIGNUP_SUCCESS:
       return {
         ...state,
-        isSigningUp: false
+        isSigningUp: false,
+        error: ''
       }
     case SIGNUP_FAIL:
       return {
@@ -69,13 +76,18 @@ function reducer(state = initialState, action) {
     case GET_LIST_START:
       return {
         ...state,
-        isGettingLists: true
+        isGettingLists: true,
+        error: ''
       }
     case GET_LIST_SUCCESS:
       return {
         ...state,
         isGettingLists: false,
-        lists: action.payload,
+        lists: [
+          ...state.lists,
+          ...action.payload
+        ],
+        error: ''
       }
     case GET_LIST_FAIL:
       return{
@@ -86,12 +98,14 @@ function reducer(state = initialState, action) {
     case ADD_LIST_START:
       return {
         ...state,
-        isAddingLists: true
+        isAddingLists: true,
+        error: ''
       }
     case ADD_LIST_SUCCESS:
       return {
         ...state,
         isAddingLists: false,
+        error: ''
       }
     case ADD_LIST_FAIL:
       return{
@@ -99,6 +113,24 @@ function reducer(state = initialState, action) {
         isAddingLists: false,
         error: action.payload
       }
+      case DELETE_LIST_START:
+        return {
+          ...state,
+          isAddingLists: true,
+          error: ''
+        }
+      case DELETE_LIST_SUCCESS:
+        return {
+          ...state,
+          isAddingLists: false,
+          error: ''
+        }
+      case DELETE_LIST_FAIL:
+        return{
+          ...state,
+          isAddingLists: false,
+          error: action.payload
+        }
     default:
       return state;
   }

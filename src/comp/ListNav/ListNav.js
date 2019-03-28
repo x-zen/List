@@ -18,7 +18,7 @@ class ListNav extends React.Component {
   }
 
   componentDidMount() {
-    this.props.readLists(this.state.lists);
+    this.props.readLists();
   }
 
   render() {
@@ -38,8 +38,10 @@ class ListNav extends React.Component {
                 id={list.id}
                 title={list.title}
                 description={list.description}
+                dueDate={list.dueDate}
+                completed={list.completed}
                 key={list.id}
-                list={list}
+                lists={list}
               />
             );
           })}
@@ -53,7 +55,7 @@ class ListNav extends React.Component {
   }
 }
 
-const mapStateToPops = state => {
+const mapStateToProps = state => {
   console.log(state);
   return {
     lists: state.lists,
@@ -62,6 +64,6 @@ const mapStateToPops = state => {
 };
 
 export default connect(
-  mapStateToPops,
+  mapStateToProps,
   { readLists }
 )(ListNav);
