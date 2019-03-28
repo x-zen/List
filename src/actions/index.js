@@ -64,3 +64,18 @@ export const addList = lists => dispatch => {
       dispatch({ type: ADD_LIST_FAIL, payload: err })
     });
 };
+
+export const DELETE_LIST_START = 'DELETE_LIST_START';
+export const DELETE_LIST_SUCCESS = 'DELETE_LIST_SUCCESS';
+export const DELETE_LIST_FAIL = 'DELETE_LIST_FAIL';
+
+export const deleteList = lists => dispatch => {
+  dispatch({ type: DELETE_LIST_START });
+  return axios.post('https://buildweek-wunderlist.herokuapp.com/api/lists/:listId', lists, {headers: { authorization: localStorage.getItem('token')}})
+    .then(res => {
+      dispatch({ type: DELETE_LIST_SUCCESS, payload: res.data.payload });
+    })
+    .catch(err => {
+      dispatch({ type: DELETE_LIST_FAIL, payload: err })
+    });
+};
