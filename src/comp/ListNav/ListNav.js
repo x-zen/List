@@ -41,7 +41,6 @@ class ListNav extends React.Component {
                 dueDate={list.dueDate}
                 completed={list.completed}
                 key={list.id}
-                lists={list}
               />
             );
           })}
@@ -58,7 +57,9 @@ class ListNav extends React.Component {
 const mapStateToProps = state => {
   console.log(state);
   return {
-    lists: state.lists,
+    lists: [
+      ...state.lists
+    ],
     isGettingLists: state.isGettingLists
   };
 };

@@ -42,7 +42,7 @@ export const readLists = () => dispatch => {
   return axios.get('https://buildweek-wunderlist.herokuapp.com/api/lists', {headers: { authorization: localStorage.getItem('token')}})
     .then(res => {
       console.log(res)
-      dispatch({ type: GET_LIST_SUCCESS, payload: res.action.payload });
+      dispatch({ type: GET_LIST_SUCCESS, payload: res.data });
     })
     .catch(err => {
       dispatch({ type: GET_LIST_FAIL, payload: err })
@@ -68,9 +68,9 @@ export const DELETE_LIST_START = 'DELETE_LIST_START';
 export const DELETE_LIST_SUCCESS = 'DELETE_LIST_SUCCESS';
 export const DELETE_LIST_FAIL = 'DELETE_LIST_FAIL';
 
-export const deleteList = lists => dispatch => {
+export const deleteList = list => dispatch => {
   dispatch({ type: DELETE_LIST_START });
-  return axios.post('https://buildweek-wunderlist.herokuapp.com/api/lists/:listId', lists, {headers: { authorization: localStorage.getItem('token')}})
+  return axios.post('https://buildweek-wunderlist.herokuapp.com/api/lists/:listId', list, {headers: { authorization: localStorage.getItem('token')}})
     .then(res => {
       dispatch({ type: DELETE_LIST_SUCCESS, payload: res.data.payload });
     })

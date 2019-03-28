@@ -9,6 +9,11 @@ class List extends React.Component {
     };
   }
 
+  deleteList = e => {
+    e.preventDefault();
+    this.props.deleteList(this.state.id)
+  }
+
   render() {
     return (
       <div className="list">
@@ -22,7 +27,7 @@ class List extends React.Component {
         </div>
 
         <div className='list-actions'>
-          <i className="fas fa-eraser"></i>
+          <i onClick={this.deleteList} className="fas fa-eraser"></i>
           <i className="fas fa-edit"></i>
         </div>
       </div>
