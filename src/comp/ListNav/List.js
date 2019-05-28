@@ -24,6 +24,7 @@ class List extends React.Component {
         <div className='list-head'>
           <h2>{this.props.title}</h2>
           <p>delete later</p>
+          <p>delete later</p>
         </div>
         <hr className='hr' />
         <div className='list-items'>
